@@ -2156,7 +2156,8 @@ def _extract_get_pydantic_json_schema(tp: Any, schema: CoreSchema) -> GetJsonSch
             cls_name = getattr(tp, '__name__', None)
             raise PydanticUserError(
                 f'The `__modify_schema__` method is not supported in Pydantic v2. '
-                f'Use `__get_pydantic_json_schema__` instead{f" in class `{cls_name}`" if cls_name else ""}.',
+                f'Use `__get_pydantic_json_schema__` instead{f" in class `{cls_name}`" if cls_name else ""}.'
+                f'{tp=}, {js_modify_function=}, {BaseModel.__get_pydantic_json_schema__.__func__=}, {getattr(js_modify_function, '__func__', None)=}, ',
                 code='custom-json-schema',
             )
 
